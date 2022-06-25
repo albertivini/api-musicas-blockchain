@@ -10,8 +10,8 @@ export class RegisterService {
 
         const hasRegister = await User.findOne({ email })
 
-        if (!hasRegister) {
-            throw new Error()
+        if (hasRegister) {
+            throw new Error('User already exists')
         }
 
         const hashPassword = await hash(password, 10)

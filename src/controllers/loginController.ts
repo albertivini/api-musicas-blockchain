@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RegisterService } from "../services/registerService";
+import { LoginService } from "../services/loginService";
 
 export class RegisterController {
 
@@ -8,12 +8,12 @@ export class RegisterController {
         try {
             const { email, password } = req.body
 
-            const registerService = new RegisterService()
+            const login_service = new LoginService()
     
-            const register = await registerService.execute({ email, password})
+            const id = await login_service.execute({ email, password})
     
             return res.status(201).json({ 
-                message: register
+                message: id
             })
         } catch (err) {
             return res.status(400).json({
